@@ -1,7 +1,7 @@
 jenkins-puppet-configuration
 ============================
 
-Provides a puppet manifest with basic modules for a jenkins master. Additional manual steps are currently necessary for complete setup. See: <wikilink>
+Provides a puppet manifest with basic modules for a jenkins master. Additional manual steps are currently necessary for complete setup. See: todo
 
 #### Requirements
 
