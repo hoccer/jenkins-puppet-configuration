@@ -1,15 +1,7 @@
 jenkins-puppet-configuration
 ============================
 
-Provides a puppet manifest with basic modules for a jenkins master. Additional manual steps are currently necessary for complete setup. See: todo
-
-#### Requirements
-
-* Ubuntu 14.04 LTS minimal install
-* extra packages
-```
-git puppet
-```
+Provides a puppet manifest with basic modules for a jenkins master. Additional manual steps are currently necessary for complete setup. See [wiki](https://github.com/hoccer/jenkins-puppet-configuration/wiki) for documentation on system and application configuration. 
 
 Prepare Puppet modules:
 ```
