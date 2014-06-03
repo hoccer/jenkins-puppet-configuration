@@ -1,0 +1,47 @@
+FORGE
+  remote: http://forge.puppetlabs.com
+  specs:
+    maestrodev/jenkins (1.0.2)
+    maestrodev/jetty (1.1.2)
+      maestrodev/wget (>= 1.0.0)
+      puppetlabs/stdlib (>= 3.2.0)
+    maestrodev/wget (1.4.1)
+    puppetlabs/apt (1.4.2)
+      puppetlabs/stdlib (>= 2.2.1)
+    puppetlabs/concat (1.1.0)
+      puppetlabs/stdlib (>= 4.0.0)
+    puppetlabs/haproxy (0.5.0)
+      puppetlabs/concat (>= 1.0.0)
+      puppetlabs/stdlib (>= 2.4.0)
+    puppetlabs/stdlib (4.2.1)
+
+GIT
+  remote: git@github.com:hoccer/puppet-backuppc-client.git
+  ref: master
+  sha: 4069d31f337a81b8ef429cf1e4fcf35280e9e2d0
+  specs:
+    hoccer/backuppc-client (0.0.1)
+
+GIT
+  remote: git@github.com:hoccer/puppet-deployment-user.git
+  ref: master
+  sha: 6278c95289ed7609e8edd0bba8309c13dace6a7b
+  specs:
+    hoccer/deployment-user (0.0.1)
+
+GIT
+  remote: git@github.com:hoccer/puppet-nrpe.git
+  ref: master
+  sha: daa1f9014bd258b7f9a1e98c82a416e949439010
+  specs:
+    hoccer/nrpe (0.0.1)
+
+DEPENDENCIES
+  hoccer/backuppc-client (>= 0)
+  hoccer/deployment-user (>= 0)
+  hoccer/nrpe (>= 0)
+  maestrodev/jenkins (>= 0)
+  maestrodev/jetty (>= 0)
+  puppetlabs/apt (>= 0)
+  puppetlabs/haproxy (>= 0)
+
