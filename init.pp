@@ -24,3 +24,38 @@ define line($file, $line, $ensure = 'present') {
 include backuppc-client
 include deployment-user
 include nrpe
+include apt
+
+notice("Jenkins certificate location set to: ${$::jenkins_cert}")
+
+apt::ppa { 'ppa:vbernat/haproxy-1.5': }
+
+class { 'haproxy':
+  global_options   => {
+    'daemon'  => '',
+    'maxconn' => '256',
+  },
+   defaults_options => {
+    'mode'    => 'http',
+    'option'  => 'forwardfor',
+    'timeout' => [
+      'connect 5s',
+      'client 50s',
+      'server 50s',
+      'tunnel 1h'
+    ],
+  },
+  require => Apt::PPA['ppa:vbernat/haproxy-1.5'],
+}
+
+haproxy::listen { 'https-in':
+   ipaddress => '*',
+   ports     => '443',
+   bind_options => {
+     'ssl crt' => $::jenkins_cert,
+     },
+   options   => {
+     'reqadd'  => "X-Forwarded-Proto:\\ https",
+     'server' => 'server1 127.0.0.1:8080 maxconn 32',
+   },
+ }
