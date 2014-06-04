@@ -13,6 +13,8 @@ FORGE
     puppetlabs/haproxy (0.5.0)
       puppetlabs/concat (>= 1.0.0)
       puppetlabs/stdlib (>= 2.4.0)
+    puppetlabs/java (1.1.1)
+      puppetlabs/stdlib (>= 0.1.6)
     puppetlabs/stdlib (4.2.1)
     rtyler/jenkins (1.1.0)
       darin/zypprepo (>= 1.0.1)
@@ -48,5 +50,6 @@ DEPENDENCIES
   maestrodev/jetty (>= 0)
   puppetlabs/apt (>= 0)
   puppetlabs/haproxy (>= 0)
+  puppetlabs/stdlib (>= 0)
   rtyler/jenkins (>= 0)
 

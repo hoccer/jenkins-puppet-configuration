@@ -28,6 +28,7 @@ include apt
 
 notice("Jenkins certificate location set to: ${$::jenkins_cert}")
 
+# HAProxy installation & configuration
 apt::ppa { 'ppa:vbernat/haproxy-1.5': }
 
 class { 'haproxy':
@@ -59,3 +60,17 @@ haproxy::listen { 'https-in':
      'server' => 'server1 127.0.0.1:8080 maxconn 32',
    },
  }
+
+# Jenkins installation & configuration
+class { 'jenkins':
+  service_enable => 'false',
+  service_ensure => 'stopped',
+}
+
+
+file_line { 'jenkins_run_standalone_false':
+  path => '/etc/default/jenkins',
+  line => 'RUN_STANDALONE=false',
+  match => "^RUN_STANDALONE=.*$",
+  require => Class["jenkins::package"],
+}
