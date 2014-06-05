@@ -63,7 +63,7 @@ haproxy::listen { 'https-in':
 
 # Jenkins installation & configuration
 class { 'jenkins':
-  service_enable => 'false',
+  service_enable => false,
   service_ensure => 'stopped',
 }
 
