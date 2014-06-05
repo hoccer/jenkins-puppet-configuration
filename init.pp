@@ -73,3 +73,45 @@ file_line { 'jenkins_run_standalone_false':
   match => "^RUN_STANDALONE=.*$",
   require => Class['jenkins::service'],
 }
+
+# Jetty installation & configuration
+$jetty_version = '9.2.0.v20140526'
+
+class { 'jetty':
+  version => $jetty_version,
+  user => 'jenkins',
+  group => 'jenkins',
+  require => Class['jenkins::package'],
+}
+->
+file_line { 'jetty_no_start':
+  path => '/etc/default/jetty',
+  line => 'NO_START=0',
+  ensure => 'present',
+}
+->
+exec { 'jenkins.xml':
+  command => "cp files/jenkins.xml /opt/jetty/webapps/",
+  path => '/usr/local/bin/:/bin/',
+}
+->
+exec { 'jetty-deploy.xml':
+  command => "cp files/jetty-deploy.xml /opt/jetty/etc/",
+  path => '/usr/local/bin/:/bin/',
+}
+->
+file_line { 'configure_jetty-deploy.xml':
+ path => "/opt/jetty/etc/jetty.conf",
+ line => 'jetty-deploy.xml',
+ ensure => 'present',
+}
+->
+exec { 'jetty.xml':
+ command => "cp files/jetty.xml /opt/jetty/etc/",
+ path => '/usr/local/bin/:/bin/',
+}
+->
+exec { 'jetty_restart':
+  command => 'sudo service jetty restart',
+  path => '/usr/bin/:/usr/bin/:/bin/',
+}
