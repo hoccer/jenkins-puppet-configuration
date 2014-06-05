@@ -67,10 +67,9 @@ class { 'jenkins':
   service_ensure => 'stopped',
 }
 
-
 file_line { 'jenkins_run_standalone_false':
   path => '/etc/default/jenkins',
   line => 'RUN_STANDALONE=false',
   match => "^RUN_STANDALONE=.*$",
-  require => Class["jenkins::package"],
+  require => Class['jenkins::service'],
 }
