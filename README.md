@@ -68,4 +68,6 @@ source configure.sh
 
 # apply puppet configuration
 sudo -E puppet apply init.pp --no-report --modulepath modules --verbose
+
+# you should now be able to access the jenkins web interface from your host system at https://127.0.0.1:8443
 ```
