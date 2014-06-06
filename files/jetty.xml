@@ -26,6 +26,14 @@
 <Configure id="Server" class="org.eclipse.jetty.server.Server">
 
     <!-- =========================================================== -->
+    <!-- Set home variable                                           -->
+    <!-- =========================================================== -->
+    <Call class="java.lang.System" name="setProperty">
+      <Arg>JENKINS_HOME</Arg>
+      <Arg>/var/lib/jenkins</Arg>
+    </Call>
+    
+    <!-- =========================================================== -->
     <!-- Configure the Server Thread Pool.                           -->
     <!-- The server holds a common thread pool which is used by      -->
     <!-- default as the executor used by all connectors and servlet  -->
