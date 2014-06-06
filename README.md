@@ -71,3 +71,11 @@ sudo -E puppet apply init.pp --no-report --modulepath modules --verbose
 
 # you should now be able to access the jenkins web interface from your host system at https://127.0.0.1:8443
 ```
+
+## Jenkins Server Migration
+
+Jenkins is quiet portable and contains nearly all its data in ```/var/lib/jenkins/```.
+
+One exception are user login information which have been stored in the Jenkins´ own database.
+Therefore logging in with a "previous" account won´t work. To disable authentication completely set ```<useSecurity>false</useSecurity>``` in ```/var/lib/jenks/config.xml``` and remove the ```<authorizationStrategy>...</authorizationStrategy>``` node.
+After restarting Jenkins (via ```sudo service jetty restart```) you should be able to access the Jenkins website as anonymous user with full permissions.
