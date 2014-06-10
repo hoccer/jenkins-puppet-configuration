@@ -33,8 +33,8 @@ sudo apt-get install make
 sudo gem install librarian-puppet
 
 # checkout puppet provisioning repository and apply
-git clone git@github.com:hoccer/hoccer-talk-puppet-configuration.git
-cd hoccer-talk-puppet-configuration
+git clone git@github.com:hoccer/jenkins-puppet-configuration.git
+cd jenkins-puppet-configuration
 
 # install puppet modules
 librarian-puppet install --verbose
