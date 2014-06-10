@@ -1,20 +1,18 @@
 jenkins-puppet-configuration
 ============================
 
+Provides a puppet manifest with basic modules for a Jenkins Master.
+
+Following the steps below all packages, dependencies and modules required (including this repository) are downloaded and applied using _puppet apply_. Make sure that an appropriate SSL certificate is present to clone the required repositories.
+
+Checkout the [wiki](https://github.com/hoccer/jenkins-puppet-configuration/wiki) for documentation on system and application configuration.
+
 ## Requirements
 
 * Ubuntu 14.04 LTS minimal install
 * Valid jenkins certificate and private key (see Facter configuration below)
 
-Provides a puppet manifest with basic modules for a Jenkins Master.
-
-The following steps describe the initial provisioning (only). There are still several steps needed at the moment to configure Jenkins, Jetty and HAProxy. See [wiki](https://github.com/hoccer/jenkins-puppet-configuration/wiki) for documentation on system and application configuration.
-
-Provide
-
 ## Production Setup
-
-The following steps install all packages, dependencies and modules required (including this repository) and apply the puppet configuration. Make sure that an appropriate SSL certificate is present to clone the required repositories.
 
 ```bash
 # install git
