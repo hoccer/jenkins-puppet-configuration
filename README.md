@@ -28,7 +28,7 @@ sudo apt-get install ruby-dev
 sudo apt-get install make
 
 # install librarian-puppet gem instead (you might need to reopen your terminal afterwards)
-sudo gem install librarian-puppet --version 1.4.0
+sudo gem install librarian-puppet --version 1.3.0
 
 # checkout puppet provisioning repository and apply
 git clone git@github.com:hoccer/jenkins-puppet-configuration.git
