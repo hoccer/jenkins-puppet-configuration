@@ -72,33 +72,7 @@ sudo -E puppet apply init.pp --no-report --modulepath modules --verbose
 
 ## Extend Java Security
 
-Hoccer uses the PKCS7Padding for encryption which is not supported by Java on many platforms (Android supports it). If it is not supported you will get a `java.security.NoSuchAlgorithmException: Cannot find any provider supporting AES/CBC/PKCS7Padding`.
-
-Its necessary to alter the Java security policy to support this padding as described below.
-
-### Download and replace Java security policy file
-
-1. Download the _Java Cryptography Extension (JCE) Unlimited Strength Jurisdiction Policy Files 7_  from [here] (http://www.oracle.com/technetwork/java/javase/downloads/jce-7-download-432124.html)
-2. Unpack the archive
-3. Overwrite the existing `local_policy.jar`as follows:
-  * Locally:```sudo cp ~/Downloads/UnlimitedJCEPolicy/local_policy.jar $JAVA_HOME/jre/lib/security```
-  * Or on a remote server/vm:
-    1. Copy file to remote device:
-      * E.g. to Vagrant Box: ```scp -P 2222 ~/Downloads/UnlimitedJCEPolicy/local_policy.jar vagrant@127.0.0.1:/tmp```
-      * E.g. to build1 server: ```scp ~/Downloads/UnlimitedJCEPolicy/local_policy.jar deployment@build1.hoccer.de:/tmp```
-    1. Replace the policy file on remote device:```sudo cp /tmp/local_policy.jar /usr/lib/jvm/java-7-openjdk-amd64/jre/lib/security```
-
-### Install Bouncycastle as security provider in the JRE
-* Locally:
-  * Download http://mirrors.ibiblio.org/maven2/org/bouncycastle/bcprov-jdk15on/1.48/bcprov-jdk15on-1.48.jar to `$JAVA_HOME/jre/lib/ext` and make sure that the rights are correct (`chmod 664` on OS X).
-* Or on a remote server/vm:
-  * Download via:```sudo wget http://mirrors.ibiblio.org/maven2/org/bouncycastle/bcprov-jdk15on/1.48/bcprov-jdk15on-1.48.jar --directory-prefix /usr/lib/jvm/java-7-openjdk-amd64/jre/lib/ext```
-
-Edit the java security file via ```sudo vi /usr/lib/jvm/java-7-openjdk-amd64/jre/lib/security/java.security```and append the following line to the section `List of providers and their preference orders`:
-
-```security.provider.N=org.bouncycastle.jce.provider.BouncyCastleProvider```
-
-where `N` is an increment to the biggest number currently present.
+To run all cryptography tests it might be necessary to extend the java security policy. This is described [here](https://github.com/hoccer/hoccer-talk-spike/wiki/Extend-Java-Security).
 
 ## Jenkins Server Migration
 
