@@ -25,7 +25,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.provision :shell do |shell|
     shell.inline = <<-SCRIPT
       sudo apt-get -y install git-core puppet ruby-dev make
-      sudo gem install librarian-puppet --version 1.4.0
+      sudo gem install librarian-puppet --version 1.3.0
     SCRIPT
   end
 end
